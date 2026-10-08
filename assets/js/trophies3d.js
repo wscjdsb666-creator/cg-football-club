@@ -321,7 +321,7 @@ function initStage(stage, type, index) {
   let dragging = false, lastX = 0, velocity = 0, idle = 0;
   stage.addEventListener('pointerdown', e => {
     dragging = true; lastX = e.clientX; velocity = 0;
-    stage.setPointerCapture(e.pointerId);
+    try { stage.setPointerCapture(e.pointerId); } catch { }
     stage.classList.add('is-drag');
   });
   stage.addEventListener('pointermove', e => {
@@ -335,7 +335,6 @@ function initStage(stage, type, index) {
   const endDrag = () => { dragging = false; stage.classList.remove('is-drag'); };
   stage.addEventListener('pointerup', endDrag);
   stage.addEventListener('pointercancel', endDrag);
-  stage.addEventListener('pointerleave', endDrag);
 
   /* 只在可见时渲染 */
   let visible = true;
