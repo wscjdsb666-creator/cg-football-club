@@ -2,11 +2,38 @@
 
 一个纯静态网站，不需要安装任何软件、不需要服务器，双击 `index.html` 就能看。
 
+## 🌐 线上地址（已发布）
+
+```
+https://wscjdsb666-creator.github.io/cg-football-club/
+```
+
+托管在 **GitHub Pages**（免费、全球可访问、自带 HTTPS）。仓库地址：
+`https://github.com/wscjdsb666-creator/cg-football-club`
+
+### 以后怎么更新（一条命令）
+
+改完网站文件后运行：
+
+```powershell
+pwsh -File "E:\数字营销\_tools\deploy-pages.ps1"
+```
+
+脚本会自动同步单文件版本、提交并推送，约 1 分钟后线上自动更新。
+
+### 离线演示版
+
+`standalone.html` 是把 HTML、CSS、JavaScript 和所有图片打包在一起的**单文件版本**（约 79KB）。
+双击就能打开、断网也能看、可以直接发微信或邮件给任何人，适合上课演示或网络不好时使用。
+
 ## 目录结构
 
 ```
 cg-fc/
 ├─ index.html                 网站首页（所有文案都在这里）
+├─ standalone.html            单文件离线版（自动生成，别手动改）
+├─ 404.html                   自定义错误页（"这一脚出界了"）
+├─ .nojekyll                  GitHub Pages 必需，别删
 ├─ assets/
 │  ├─ css/styles.css          配色、排版、动画
 │  ├─ js/main.js              巨星图鉴、数字动画、导航、报名表单
