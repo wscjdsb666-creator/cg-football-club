@@ -331,21 +331,30 @@ p{margin:0 0 1em}
   background:radial-gradient(closest-side,rgba(0,0,0,.6),transparent 72%);filter:blur(2px);
 }
 .trophy3d{
-  position:absolute;left:50%;bottom:30px;width:0;height:0;
-  transform-style:preserve-3d;
-  transform:rotateX(-12deg) rotateY(-28deg);
-  animation:t3dSpin 16s linear infinite;
+  position:absolute;left:50%;bottom:calc(44px + var(--oy,100px));
+  width:0;height:0;transform-style:preserve-3d;
+  transform:rotateX(-10deg) rotateY(-30deg);
 }
+.trophy3d-static{
+  position:absolute;left:50%;bottom:44px;width:0;height:0;transform-style:preserve-3d;
+}
+.t3d--spin{animation:t3dSpin var(--spin,16s) linear infinite}
 @keyframes t3dSpin{
-  from{transform:rotateX(-12deg) rotateY(0deg)}
-  to{transform:rotateX(-12deg) rotateY(360deg)}
+  from{transform:rotateX(-10deg) rotateY(0deg)}
+  to{transform:rotateX(-10deg) rotateY(360deg)}
 }
-.big-award:hover .trophy3d{animation-duration:5s}
+.t3d--sway{animation:t3dSway var(--spin,8s) ease-in-out infinite}
+@keyframes t3dSway{
+  0%,100%{transform:rotateX(-8deg) rotateY(-26deg)}
+  50%{transform:rotateX(-8deg) rotateY(26deg)}
+}
+.big-award:hover .t3d--spin{animation-duration:4s}
+.big-award:hover .t3d--sway{animation-duration:3s}
 .trophy3d .part{
   position:absolute;left:0;top:0;width:0;height:0;
   transform-style:preserve-3d;transform:translateY(var(--py));
 }
-.trophy3d i{
+.trophy3d .p3{
   position:absolute;left:calc(var(--w) / -2);top:0;
   width:var(--w);height:var(--h);
   background:linear-gradient(180deg,var(--c1) 0%,var(--c2) 46%,var(--c3) 100%);
@@ -357,6 +366,38 @@ p{margin:0 0 1em}
     translateY(calc(var(--h) / -2));
   backface-visibility:visible;
 }
+/* 金球奖：实心球体（固定高光）+ 旋转经线 */
+.ball-core{
+  position:absolute;left:calc(var(--R) * -1);top:calc(var(--R) * -1);
+  width:calc(var(--R) * 2);height:calc(var(--R) * 2);border-radius:50%;
+  background:radial-gradient(circle at 34% 26%,#fffbe0 0%,var(--c1) 22%,var(--c2) 52%,var(--c3) 88%,#4a3005 100%);
+  box-shadow:0 0 34px rgba(255,214,94,.45),inset -8px -12px 26px rgba(0,0,0,.35);
+}
+.trophy3d .p3--lune{
+  border-radius:50%;backface-visibility:hidden;
+  background:linear-gradient(90deg,rgba(255,255,255,.75),rgba(255,255,255,.05) 45%,rgba(0,0,0,.35) 100%);
+  opacity:.45;mix-blend-mode:overlay;
+  filter:none;
+}
+/* 杯耳：竖直平面里的一圈小球 */
+.trophy3d .handle{
+  position:absolute;left:0;top:0;width:0;height:0;
+  transform-style:preserve-3d;transform:translate3d(var(--hx),var(--hy),0);
+}
+.trophy3d .handle i{
+  position:absolute;left:calc(var(--w) / -2);top:calc(var(--h) / -2);
+  width:var(--w);height:var(--h);border-radius:50%;
+  background:linear-gradient(180deg,var(--c1) 0%,var(--c2) 50%,var(--c3) 100%);
+  filter:brightness(var(--b));
+  transform:rotateZ(calc(var(--i) * (360deg / var(--n)))) translateY(calc(var(--hr) * -1));
+}
+/* 球鞋 / 手套：多层 SVG 叠出厚度 */
+.trophy3d .svg3d{
+  position:absolute;left:0;top:0;width:var(--w,240px);
+  translate:-50% -50%;transform-style:preserve-3d;
+}
+.trophy3d .svg-layer-wrap{position:absolute;inset:0;transform-style:preserve-3d}
+.trophy3d .svg-layer{width:100%;height:auto;display:block}
 .t3d-flare{
   position:absolute;top:0;bottom:0;left:0;width:55%;pointer-events:none;
   background:linear-gradient(105deg,transparent,rgba(255,255,255,.6),transparent);

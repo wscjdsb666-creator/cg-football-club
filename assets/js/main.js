@@ -206,47 +206,192 @@
   ---------------------------------------------------------------- */
 
   var BIG_AWARDS = [
-    { title: '金球奖', sub: '年度最佳球员', who: '王指导（德布劳硕）· 17 号', no: 17,
+    { type: 'ball', title: '金球奖', sub: '年度最佳球员', who: '王指导（德布劳硕）· 17 号',
       desc: '年度 91 球、31 次助攻，带队打完队史第 100 场。',
-      c1: '#fff3c4', c2: '#e8b83c', c3: '#7f560a' },
-    { title: '金靴奖', sub: '年度最佳射手', who: '王指导（德布劳硕）· 17 号', no: 17,
-      desc: '年度 91 球，队史单赛季进球纪录，比第二多出 60 球。',
-      c1: '#ffe2a6', c2: '#e0951c', c3: '#6f3f04' },
-    { title: '金手套奖', sub: '年度最佳门将', who: 'Ooo · 97 号', no: 97,
+      c1: '#fff6cf', c2: '#e8b83c', c3: '#7a520a', spin: 13 },
+    { type: 'boot', title: '金靴奖', sub: '年度最佳射手', who: '王指导（德布劳硕）· 17 号',
+      desc: '年度 91 球，队史单赛季进球纪录，比第二名多出 60 球。',
+      c1: '#ffeeb8', c2: '#e6a41f', c3: '#6f4304', spin: 7 },
+    { type: 'glove', title: '金手套奖', sub: '年度最佳门将', who: 'Ooo · 97 号',
       desc: '扑救成功率 71%，杯赛决赛点球大战扑出两个。',
-      c1: '#ffe8cd', c2: '#d4823a', c3: '#6d3a0c' },
-    { title: '金童奖', sub: '年度最佳新人', who: '张文浩 · 66 号', no: 66,
-      desc: '首秀替补 20 分钟送出助攻，一年时间坐稳首发。',
-      c1: '#f6f9ff', c2: '#b7c4da', c3: '#54607a' }
+      c1: '#ffe9c9', c2: '#d98b3a', c3: '#6b3a0c', spin: 8 },
+    { type: 'cup', title: '冠军奖杯', sub: '2025 赛季联赛冠军', who: 'CG足球俱乐部 · 全队 48 人',
+      desc: '联赛决赛 3:1，拿下队史第 5 座奖杯，也是第一次卫冕。',
+      c1: '#fff3c4', c2: '#dfae2e', c3: '#6f4a07', spin: 22 }
   ];
 
-  /**
-   * 用 N 个带倾角的面片拼出一个立体部件。
-   * v = { n 面数, w 面片宽, h 面片高, r 中位半径, tilt 倾角(度，正数=上宽下窄), py 部件中心的纵向位置 }
-   */
-  function part(cls, v) {
-    var out = '<div class="part ' + cls + '" style="--py:' + v.py + 'px">';
-    for (var i = 0; i < v.n; i++) {
-      /* 面片明暗：朝前的更亮，形成金属反光的分面感 */
-      var theta = (i / v.n) * Math.PI * 2;
-      var b = (0.8 + 0.34 * Math.max(0, Math.cos(theta)) + 0.06 * Math.sin(theta * 2)).toFixed(3);
-      out += '<i style="--i:' + i + ';--n:' + v.n + ';--w:' + v.w + 'px;--h:' + v.h +
-        'px;--rmid:' + v.r + 'px;--tilt:' + v.tilt + 'deg;--b:' + b + '"></i>';
+  /* 圆台/圆柱部件：n 个带倾角的面片 */
+  function cyl(n, w, h, rmid, tilt, py) {
+    var out = '<div class="part" style="--py:' + py + 'px">';
+    for (var i = 0; i < n; i++) {
+      var th = (i / n) * Math.PI * 2;
+      var b = (0.78 + 0.38 * Math.max(0, Math.cos(th)) + 0.06 * Math.sin(th * 2)).toFixed(3);
+      out += '<i class="p3" style="--i:' + i + ';--n:' + n + ';--w:' + w + 'px;--h:' + h +
+        'px;--rmid:' + rmid + 'px;--tilt:' + tilt + 'deg;--b:' + b + '"></i>';
     }
     return out + '</div>';
   }
 
-  function trophy3d(a) {
+  /* 球体的经线面片：拼出一个金色足球 */
+  function lunes(n, R) {
+    var w = 2 * R * Math.sin(Math.PI / n) * 1.22;
+    var out = '<div class="part" style="--py:0px">';
+    for (var i = 0; i < n; i++) {
+      var th = (i / n) * Math.PI * 2;
+      var b = (0.72 + 0.44 * Math.max(0, Math.cos(th))).toFixed(3);
+      out += '<i class="p3 p3--lune" style="--i:' + i + ';--n:' + n + ';--w:' + w.toFixed(1) +
+        'px;--h:' + (R * 2) + 'px;--rmid:' + R + 'px;--tilt:0deg;--b:' + b + '"></i>';
+    }
+    return out + '</div>';
+  }
+
+  /* 杯耳：在竖直平面里用小块围成一个环 */
+  function handle(n, r, hx, hy, size) {
+    var out = '<div class="handle" style="--hx:' + hx + 'px;--hy:' + hy + 'px">';
+    for (var i = 0; i < n; i++) {
+      var b = (0.8 + 0.3 * Math.max(0, Math.cos((i / n) * Math.PI * 2))).toFixed(3);
+      out += '<i class="p3" style="--i:' + i + ';--n:' + n + ';--hr:' + r + 'px;--b:' + b +
+        ';--w:' + size + 'px;--h:' + size + 'px"></i>';
+    }
+    return out + '</div>';
+  }
+
+  function goldGrad(id, a) {
+    return '<linearGradient id="' + id + '" x1="0" y1="0" x2="0.2" y2="1">' +
+      '<stop offset="0" stop-color="' + a.c1 + '"/>' +
+      '<stop offset=".45" stop-color="' + a.c2 + '"/>' +
+      '<stop offset="1" stop-color="' + a.c3 + '"/></linearGradient>';
+  }
+
+  /* 金靴：金色球鞋（分层做出厚度） */
+  function bootSVG(a, k) {
+    var g = 'bt' + k, gl = 'btl' + k;
+    return '' +
+      '<svg class="svg-layer" viewBox="0 0 340 240">' +
+        '<defs>' + goldGrad(g, a) +
+          '<linearGradient id="' + gl + '" x1="0" y1="0" x2="0" y2="1">' +
+            '<stop offset="0" stop-color="#ffffff" stop-opacity=".55"/>' +
+            '<stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>' +
+        '</defs>' +
+        /* 鞋钉 */
+        '<g fill="' + a.c3 + '">' +
+          '<rect x="46" y="196" width="16" height="20" rx="7"/>' +
+          '<rect x="88" y="203" width="16" height="20" rx="7"/>' +
+          '<rect x="132" y="206" width="16" height="20" rx="7"/>' +
+          '<rect x="178" y="206" width="16" height="20" rx="7"/>' +
+          '<rect x="224" y="200" width="16" height="20" rx="7"/>' +
+          '<rect x="268" y="190" width="16" height="20" rx="7"/>' +
+        '</g>' +
+        /* 鞋底 */
+        '<path d="M28 184C112 197 242 196 322 178l-2 20c-78 18-212 20-296 8z" fill="' + a.c3 + '"/>' +
+        /* 鞋面 */
+        '<path d="M34 184C28 160 32 136 46 122c14-15 34-23 56-25l28-4c32-4 60 6 82 24 32 26 66 46 94 54 12 3 18 10 16 19-80 12-214 10-288 4z" fill="url(#' + g + ')"/>' +
+        '<path d="M34 184C28 160 32 136 46 122c14-15 34-23 56-25l28-4c32-4 60 6 82 24 32 26 66 46 94 54 12 3 18 10 16 19-80 12-214 10-288 4z" fill="url(#' + gl + ')" opacity=".5"/>' +
+        /* 鞋口 */
+        '<ellipse cx="102" cy="100" rx="44" ry="15" fill="' + a.c3 + '"/>' +
+        '<ellipse cx="102" cy="99" rx="34" ry="9" fill="#2a1a03" opacity=".6"/>' +
+        /* 鞋带 */
+        '<g stroke="' + a.c3 + '" stroke-width="5" stroke-linecap="round" opacity=".7">' +
+          '<path d="M120 112 148 106"/>' +
+          '<path d="M134 124 162 118"/>' +
+          '<path d="M148 136 176 130"/>' +
+        '</g>' +
+        /* 侧面装饰与高光 */
+        '<path d="M96 150C150 138 216 150 276 172" stroke="' + a.c3 + '" stroke-width="7" fill="none" opacity=".5" stroke-linecap="round"/>' +
+        '<path d="M40 160C74 138 108 128 142 126" stroke="#ffffff" stroke-width="9" fill="none" opacity=".25" stroke-linecap="round"/>' +
+      '</svg>';
+  }
+
+  /* 金手套：门将手套 */
+  function gloveSVG(a, k) {
+    var g = 'gl' + k;
+    return '' +
+      '<svg class="svg-layer" viewBox="0 0 300 330">' +
+        '<defs>' + goldGrad(g, a) + '</defs>' +
+        /* 四指 */
+        '<rect x="66" y="30" width="40" height="122" rx="20" fill="url(#' + g + ')"/>' +
+        '<rect x="112" y="16" width="40" height="136" rx="20" fill="url(#' + g + ')"/>' +
+        '<rect x="158" y="22" width="40" height="130" rx="20" fill="url(#' + g + ')"/>' +
+        '<rect x="202" y="42" width="38" height="110" rx="19" fill="url(#' + g + ')"/>' +
+        /* 大拇指 */
+        '<rect x="16" y="168" width="58" height="30" rx="15" fill="url(#' + g + ')" transform="rotate(-24 45 183)"/>' +
+        /* 手掌 */
+        '<rect x="58" y="118" width="186" height="152" rx="54" fill="url(#' + g + ')"/>' +
+        /* 掌纹 */
+        '<path d="M96 156C120 178 128 214 122 250" stroke="' + a.c3 + '" stroke-width="7" fill="none" opacity=".5" stroke-linecap="round"/>' +
+        '<path d="M150 150C178 180 186 216 178 254" stroke="' + a.c3 + '" stroke-width="7" fill="none" opacity=".45" stroke-linecap="round"/>' +
+        /* 手腕带 */
+        '<rect x="58" y="252" width="186" height="48" rx="18" fill="' + a.c3 + '"/>' +
+        '<rect x="58" y="264" width="186" height="9" fill="' + a.c1 + '" opacity=".55"/>' +
+        '<path d="M84 196C112 168 168 162 206 180" stroke="#ffffff" stroke-width="11" fill="none" opacity=".3" stroke-linecap="round"/>' +
+      '</svg>';
+  }
+
+  /* 四座奖杯各自的立体结构 */
+  function trophy3d(a, k) {
+    var body = '';
+
+    if (a.type === 'ball') {
+      /* 金球奖：金色足球 —— 实心球体（不转，负责球的外形与固定高光）+ 经线面片（负责转动）
+         球体的轮廓在任何角度都是圆，所以用固定球体 + 旋转纹路最像真球。 */
+      body =
+        '<div class="trophy3d-static" style="bottom:calc(44px + 106px)">' +
+          '<div class="ball-core" style="--R:62px"></div>' +
+        '</div>' +
+        '<div class="trophy3d t3d--spin" style="--spin:' + a.spin + 's;--oy:106px">' + lunes(20, 62) + '</div>' +
+        '<div class="trophy3d-static">' +
+          cyl(16, 22, 18, 44, 16, -9) +
+          cyl(16, 18, 26, 33, 10, -31) +
+        '</div>';
+    } else if (a.type === 'boot') {
+      /* 金靴奖：金色球鞋 + 底座 */
+      body =
+        '<div class="trophy3d t3d--sway" style="--spin:' + a.spin + 's;--oy:88px">' +
+          '<div class="svg3d" style="--w:250px">' +
+            '<div class="svg-layer-wrap" style="transform:translateZ(-10px);filter:brightness(.7)">' + bootSVG(a, k) + '</div>' +
+            '<div class="svg-layer-wrap" style="transform:translateZ(0)">' + bootSVG(a, k) + '</div>' +
+            '<div class="svg-layer-wrap" style="transform:translateZ(10px);opacity:.5">' + bootSVG(a, k) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="trophy3d-static">' +
+          cyl(16, 18, 22, 46, 12, -11) +
+        '</div>';
+    } else if (a.type === 'glove') {
+      /* 金手套奖：门将手套 + 底座 */
+      body =
+        '<div class="trophy3d t3d--sway" style="--spin:' + a.spin + 's;--oy:104px">' +
+          '<div class="svg3d" style="--w:190px">' +
+            '<div class="svg-layer-wrap" style="transform:translateZ(-10px);filter:brightness(.7)">' + gloveSVG(a, k) + '</div>' +
+            '<div class="svg-layer-wrap" style="transform:translateZ(0)">' + gloveSVG(a, k) + '</div>' +
+            '<div class="svg-layer-wrap" style="transform:translateZ(10px);opacity:.45">' + gloveSVG(a, k) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="trophy3d-static">' +
+          cyl(16, 18, 20, 44, 12, -10) +
+        '</div>';
+    } else {
+      /* 冠军奖杯：双耳大杯（杯身 + 杯盖 + 杯耳 + 杯颈 + 三级底座） */
+      body =
+        '<div class="trophy3d t3d--spin" style="--spin:' + a.spin + 's;--oy:115px">' +
+          cyl(18, 15, 80, 28, -8.5, 13) +        /* 杯身：上宽下窄 */
+          cyl(18, 17, 8, 43, 0, 57) +            /* 杯口 */
+          cyl(18, 15, 22, 30, 13, 72) +          /* 杯盖（上收） */
+          cyl(14, 12, 10, 18, 20, 88) +          /* 盖顶 */
+          cyl(12, 10, 12, 9, 0, 99) +            /* 顶饰 */
+          handle(16, 21, 49, 13, 7) +            /* 左耳 */
+          handle(16, 21, -49, 13, 7) +           /* 右耳 */
+          cyl(14, 12, 36, 10, 0, -45) +          /* 杯颈 */
+          cyl(18, 18, 20, 26, 12, -73) +         /* 底座上 */
+          cyl(20, 20, 12, 36, 10, -89) +         /* 底座中 */
+          cyl(22, 22, 10, 44, 8, -100) +         /* 底座下 */
+        '</div>' +
+        '<div class="trophy3d-static">' + cyl(24, 26, 10, 50, 0, -5) + '</div>';
+    }
+
     return '' +
       '<div class="trophy3d-wrap" style="--c1:' + a.c1 + ';--c2:' + a.c2 + ';--c3:' + a.c3 + '">' +
         '<div class="t3d-glow"></div>' +
-        '<div class="trophy3d">' +
-          /* 杯口 8px / 杯身 100px（上宽下窄的圆台）/ 杯颈 34px / 底座 18px */
-          part('part--rim',  { n: 14, w: 19, h: 9,   r: 37, tilt: 0,     py: -156 }) +
-          part('part--cup',  { n: 16, w: 16, h: 101, r: 31, tilt: 5.7,   py: -102 }) +
-          part('part--stem', { n: 10, w: 7,  h: 34,  r: 8,  tilt: 0,     py: -35  }) +
-          part('part--base', { n: 16, w: 16, h: 19,  r: 28, tilt: -12.5, py: -9   }) +
-        '</div>' +
+        body +
         '<div class="t3d-floor"></div>' +
         '<div class="t3d-flare"></div>' +
       '</div>';
@@ -254,11 +399,11 @@
 
   var bigGrid = document.getElementById('bigAwards');
   if (bigGrid) {
-    BIG_AWARDS.forEach(function (a) {
+    BIG_AWARDS.forEach(function (a, k) {
       var card = document.createElement('article');
       card.className = 'big-award';
       card.innerHTML =
-        '<div class="big-award__stage">' + trophy3d(a) + '</div>' +
+        '<div class="big-award__stage">' + trophy3d(a, k) + '</div>' +
         '<div class="big-award__body">' +
           '<p class="big-award__sub">' + a.sub + '</p>' +
           '<h3>' + a.title + '</h3>' +
