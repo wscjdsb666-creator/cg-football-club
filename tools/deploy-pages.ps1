@@ -2,16 +2,11 @@
 # 用法：pwsh -File "E:\数字营销\cg-fc\tools\deploy-pages.ps1"
 $ErrorActionPreference = 'Stop'
 
-$tools = $PSScriptRoot                 # cg-fc\tools
-$site  = Split-Path -Parent $tools     # cg-fc
-$gh    = 'C:\Program Files\GitHub CLI\gh.exe'
+$site = Split-Path -Parent $PSScriptRoot     # cg-fc 目录
+$gh   = 'C:\Program Files\GitHub CLI\gh.exe'
 
 Set-Location $site
 
-# 1) 同步单文件离线版
-node (Join-Path $tools 'single.mjs') | Out-Null
-
-# 2) 有改动才提交
 $changes = git status --porcelain
 if (-not $changes) {
   Write-Output '没有改动，无需更新。'

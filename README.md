@@ -19,12 +19,7 @@ https://wscjdsb666-creator.github.io/cg-football-club/
 pwsh -File "E:\数字营销\cg-fc\tools\deploy-pages.ps1"
 ```
 
-脚本会自动生成单文件离线版、提交、推送，约 1 分钟后线上自动更新。
-
-### 离线演示版
-
-`standalone.html` 是把 HTML、CSS、JavaScript 和所有图片打包在一起的**单文件版本**。
-双击就能打开、断网也能看、可以直接发微信或邮件给别人（图片较多，文件约 1.5MB）。
+脚本会自动提交、推送，约 1 分钟后线上自动更新。
 
 ## 网站包含什么
 
@@ -44,12 +39,10 @@ pwsh -File "E:\数字营销\cg-fc\tools\deploy-pages.ps1"
 ```
 cg-fc/
 ├─ index.html                 网站首页（所有文案都在这里）
-├─ standalone.html            单文件离线版（自动生成，别手动改）
 ├─ 404.html                   自定义错误页
 ├─ .nojekyll                  GitHub Pages 必需，别删
 ├─ tools/
-│  ├─ deploy-pages.ps1        一键更新线上（改完运行它）
-│  └─ single.mjs              生成离线单文件版
+│  └─ deploy-pages.ps1        一键更新线上（改完运行它）
 ├─ assets/
 │  ├─ css/styles.css          配色（深蓝 + 红）、排版、动画
 │  ├─ js/main.js              阵容名单数据 + 筛选搜索 + 动画
