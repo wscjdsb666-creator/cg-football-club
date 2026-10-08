@@ -72,6 +72,8 @@
   var emptyTip = document.getElementById('squadEmpty');
 
   function photoName(i) {
+    /* 单文件离线版会把头像内嵌成 base64 放在 window.__AVATARS__ 里 */
+    if (window.__AVATARS__ && window.__AVATARS__[i]) return window.__AVATARS__[i];
     return 'assets/img/players/p' + String(i + 1).padStart(2, '0') + '.jpg';
   }
 
