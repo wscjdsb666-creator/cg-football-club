@@ -46,8 +46,9 @@ cg-fc/
 
 ## 怎么打开
 
-直接双击 `index.html`。想发布到网上，把整个 `cg-fc` 文件夹上传到任何静态托管服务即可
-（GitHub Pages、Vercel、Netlify、阿里云 OSS、腾讯云 COS 都可以）。
+直接双击 `index.html` 就能在本地看。网站已经发布在 **GitHub Pages** 上（地址见上方），
+本项目以后只走 GitHub：改完文件运行 `pwsh -File "E:\数字营销\_tools\deploy-pages.ps1"`，
+自动提交推送，约 1 分钟后线上更新。
 
 ## 怎么换球员图片（重点）
 
