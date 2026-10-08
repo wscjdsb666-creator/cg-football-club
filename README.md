@@ -16,10 +16,11 @@ https://wscjdsb666-creator.github.io/cg-football-club/
 改完网站文件后运行：
 
 ```powershell
-pwsh -File "E:\数字营销\_tools\deploy-pages.ps1"
+pwsh -File "E:\数字营销\cg-fc\tools\deploy-pages.ps1"
 ```
 
 脚本会自动同步单文件版本、提交并推送，约 1 分钟后线上自动更新。
+脚本放在项目里的 `tools/` 文件夹中，跟网站一起版本管理。
 
 ### 离线演示版
 
@@ -34,6 +35,9 @@ cg-fc/
 ├─ standalone.html            单文件离线版（自动生成，别手动改）
 ├─ 404.html                   自定义错误页（"这一脚出界了"）
 ├─ .nojekyll                  GitHub Pages 必需，别删
+├─ tools/
+│  ├─ deploy-pages.ps1        一键更新线上（改完运行它）
+│  └─ single.mjs              生成离线单文件版
 ├─ assets/
 │  ├─ css/styles.css          配色、排版、动画
 │  ├─ js/main.js              巨星图鉴、数字动画、导航、报名表单
@@ -47,7 +51,7 @@ cg-fc/
 ## 怎么打开
 
 直接双击 `index.html` 就能在本地看。网站已经发布在 **GitHub Pages** 上（地址见上方），
-本项目以后只走 GitHub：改完文件运行 `pwsh -File "E:\数字营销\_tools\deploy-pages.ps1"`，
+本项目以后只走 GitHub：改完文件运行 `pwsh -File "E:\数字营销\cg-fc\tools\deploy-pages.ps1"`，
 自动提交推送，约 1 分钟后线上更新。
 
 ## 怎么换球员图片（重点）
