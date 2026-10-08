@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CG足球俱乐部 · CG Football Club</title>
+<meta name="description" content="CG足球俱乐部（球迷自建站）：绿金军团的主场、传奇战史、23岁队长德布劳硕的故事、巨星图鉴与荣誉室。" />
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/img/icon-512.png" />
+<meta name="theme-color" content="#04120e" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CG足球俱乐部" />
+<meta property="og:title" content="CG足球俱乐部 · CG Football Club" />
+<meta property="og:description" content="绿金军团：七个夜晚的传奇战史、23岁队长德布劳硕、巨星图鉴与荣誉室。" />
+<meta property="og:image" content="assets/img/og-cover.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CG足球俱乐部" />
+<meta name="twitter:image" content="assets/img/og-cover.jpg" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+<noscript>
+  <style>
+    .reveal{opacity:1!important;transform:none!important}
+    .filters{display:none}
+  </style>
+</noscript>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <a class="brand" href="#top" aria-label="CG足球俱乐部 首页">
+    <img src="assets/img/logo.svg" alt="CG足球俱乐部队徽" class="brand__crest" />
+    <span class="brand__text">
+      <strong>CG足球俱乐部</strong>
+      <small>CG FOOTBALL CLUB · EST. 2016</small>
+    </span>
+  </a>
+
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="打开导航菜单">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="site-nav" id="primaryNav">
+    <a href="#about">俱乐部</a>
+    <a href="#legends">传奇战史</a>
+    <a href="#captain">队长</a>
+    <a href="#stars">巨星图鉴</a>
+    <a href="#honours">荣誉室</a>
+    <a href="#join" class="site-nav__cta">加入我们</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ 首屏 ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__pitch" aria-hidden="true"></div>
+    <div class="hero__glow" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <div class="hero__crest">
+        <img src="assets/img/logo.svg" alt="CG足球俱乐部队徽：绿金盾牌，中央为 CG 字样" />
+        <div class="hero__crest-ring" aria-hidden="true"></div>
+      </div>
+
+      <p class="hero__kicker">绿金军团 · THE GREEN &amp; GOLD</p>
+      <h1 class="hero__title">
+        <span>CG足球俱乐部</span>
+        <em>CG Football Club</em>
+      </h1>
+      <p class="hero__motto">「终场哨没响，比分就不算数。」</p>
+      <p class="hero__lead">
+        我们从一片用粉笔画球门线的水泥地开始，如今把球传到了欧洲的雨夜里。<br />
+        这里讲的是我们的故事——一场一场，传奇一场。
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#legends">看我们的传奇战史</a>
+        <a class="btn btn--ghost" href="#captain">认识队长德布劳硕</a>
+      </div>
+
+      <ul class="stat-strip" aria-label="俱乐部数据概览">
+        <li><b data-count="2016" data-plain="1">2016</b><span>成立年份</span></li>
+        <li><b data-count="42000" data-suffix="+">42000+</b><span>CG竞技场 座位</span></li>
+        <li><b data-count="27" data-suffix=" 座">27 座</b><span>各级别冠军</span></li>
+        <li><b data-count="186" data-suffix="K">186K</b><span>注册会员</span></li>
+      </ul>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ============ 俱乐部简介 ============ -->
+  <section class="section" id="about">
+    <div class="wrap grid-2">
+      <div class="reveal">
+        <p class="eyebrow">OUR CLUB</p>
+        <h2>一支从水泥地长出来的球队</h2>
+        <p class="lead">
+          2016 年的夏天，长风市老码头的空地上，十二个少年用粉笔画出球门线，把矿泉水瓶当角旗。
+          那天傍晚他们踢到路灯亮起来，谁也没想到，那支没名字的球队会在九年后拥有自己的四万座球场。
+        </p>
+        <p>
+          我们把队名里的 <b>CG</b> 理解为 <i>Come Together, Go Further</i>——
+          先聚在一起，再走得更远。绿色是这座城市潮水的颜色，金色是路灯照在奖杯上的颜色。
+          所以我们叫自己「绿金军团」。
+        </p>
+        <p>
+          俱乐部的信条只有三条：<b>向前传球</b>、<b>青训优先</b>、<b>把球场还给社区</b>。
+          在 CG 竞技场，每场比赛的第 12 分钟，全场会为一位普通球迷鼓掌——那一年，是他把老码头的灯修好的。
+        </p>
+        <div class="pill-row">
+          <span class="pill">攻势足球</span>
+          <span class="pill">青训优先</span>
+          <span class="pill">社区共创</span>
+          <span class="pill">永不放弃</span>
+        </div>
+      </div>
+
+      <div class="fact-cards reveal">
+        <article class="fact">
+          <h3>主场 · CG竞技场</h3>
+          <p>42,000 座，可开合顶棚。南看台是「老码头看台」，永远留给最早的那批球迷。</p>
+        </article>
+        <article class="fact">
+          <h3>队歌 · 《我们是CG》</h3>
+          <p>副歌只有一句歌词：「把球往前传，把名字留在风里。」全场跟唱，一遍比一遍大声。</p>
+        </article>
+        <article class="fact">
+          <h3>青训 · 47号营</h3>
+          <p>每年从城中 3,000 名孩子里挑 30 人，学费全免。我们的队长，就是 47 号营最后一个名额。</p>
+        </article>
+        <article class="fact">
+          <h3>会徽寓意</h3>
+          <p>王冠代表野心，足球代表起点，盾牌代表「谁也别想轻易进来」。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 传奇战史 ============ -->
+  <section class="section section--dark" id="legends">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">LEGENDARY NIGHTS</p>
+        <h2>传奇战史：我们与五大联赛的七个夜晚</h2>
+        <p class="lead">
+          从伊蒂哈德的雨，到慕尼黑的雪，再到我们自己球场的灯——
+          这七场球，是俱乐部墙上挂着的七件球衣。
+        </p>
+        <p class="fiction-note">
+          <span>创作说明</span> 本章节为俱乐部世界观原创内容，部分情节为艺术虚构；涉及真实球队与球员的表述仅为致敬，不代表真实赛事记录。
+        </p>
+      </header>
+
+      <ol class="timeline">
+        <li class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__top">
+              <span class="tag">2019 · 英格兰 · 友谊赛</span>
+              <span class="score">CG 4 : 3 曼城</span>
+            </div>
+            <h3>伊蒂哈德的雨夜</h3>
+            <p>
+              第 63 分钟，比分是 0:3。雨大到看不清对面的球门。教练在场边只喊了一句话：「雨这么大，传球的人会先赢。」
+              第 78 分钟，德布劳硕外脚背一记贴地直塞，撕开整条防线——1:3。
+              第 84 分钟，角球，2:3。第 89 分钟，25 米外的远射，3:3。
+              补时第 4 分钟，他背身用脚后跟把球磕进死角——4:3。
+            </p>
+            <p class="quote">「那天我以为我们在打最后一场比赛，结果那天是我们第一次被世界看见。」——老队员 阿海</p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__top">
+              <span class="tag">2020 · 西班牙 · 国际邀请赛</span>
+              <span class="score">CG 2 : 2 皇家马德里（点球 5:4）</span>
+            </div>
+            <h3>伯纳乌的点球夜</h3>
+            <p>
+              90 分钟内 0:2 落后，第 88 分钟我们才拿到第一个角球。补时阶段连入两球，把比赛拖进点球大战。
+              第七轮，我们的门将没有用手——他用脚尖把球挡在了门线外。
+            </p>
+            <p class="quote">「他们练的是纪律，我们练的是不认输。」——守门员教练 老孟</p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__top">
+              <span class="tag">2021 · 德国 · 冬季邀请赛</span>
+              <span class="score">CG 4 : 4 拜仁慕尼黑</span>
+            </div>
+            <h3>慕尼黑的雪战</h3>
+            <p>
+              零下 9 度，雪压在草皮上，球滚得比人慢。我们四次落后，四次扳平。
+              最后一球是队长在雪地里滑铲抢断后自己完成的——他抱着一身雪爬起来说：「再踢十分钟，我们就赢了。」
+              裁判吹哨的时候，两队的球迷一起鼓掌。
+            </p>
+            <p class="quote">「雪停不下来，我们也不停。」——队长 德布劳硕</p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__top">
+              <span class="tag">2022 · 法国 · 冠军杯</span>
+              <span class="score">CG 2 : 1 巴黎圣日耳曼</span>
+            </div>
+            <h3>94 分钟的那一脚外脚背</h3>
+            <p>
+              第 94 分钟，全场已经没有人在跑动了。德布劳硕在右路拿球，抬头，外脚背一挑——
+              球穿过三名后卫之间的缝隙，落到 9 号脚下。1 秒之后，球网在动。
+              那一脚传球后来被球迷做成了壁画，画在长风市老码头的墙上。
+            </p>
+            <p class="quote">「他早就看见了别人还没发生的画面。」——解说员</p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__top">
+              <span class="tag">2023 · 意大利 · 邀请赛</span>
+              <span class="score">CG 0 : 0 国际米兰</span>
+            </div>
+            <h3>米兰铁壁：28% 控球的尊严</h3>
+            <p>
+              我们只拿到 28% 的控球率，全场 3 脚射门。但我们零失球，而且没有一次战术犯规。
+              赛后有对手球员走过来问我们的中后卫：「你们是练过忍耐的吗？」他说：「不，我们练过等待。」
+            </p>
+            <p class="quote">「0:0 也可以是一场史诗。」——球队周报</p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__top">
+              <span class="tag">2024 · 英格兰 · 加时赛</span>
+              <span class="score">CG 3 : 2 利物浦</span>
+            </div>
+            <h3>安菲尔德的第 118 分钟</h3>
+            <p>
+              客队更衣室的墙上有一句话：「这里没有人给你鼓掌。」第 118 分钟，我们替补登场的 17 岁小将
+              在 30 米外抽射破门。全场安静了两秒，然后我们的 300 名远征球迷唱起了队歌。
+            </p>
+            <p class="quote">「那两秒的安静，是我这辈子听过最好听的声音。」——远征球迷 林叔</p>
+          </div>
+        </li>
+
+        <li class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__top">
+              <span class="tag">2025 · CG竞技场 · 主场揭幕战</span>
+              <span class="score">CG 3 : 1 切尔西</span>
+            </div>
+            <h3>灯亮起来的那一天</h3>
+            <p>
+              CG竞技场第一次满场。开场前，全场灯光熄灭，只有南看台有人点起了手机手电筒——
+              那是当年老码头的孩子，如今已经带着自己的孩子来看球。
+              第 12 分钟，全场鼓掌；第 90 分钟，我们 3:1 赢下比赛。
+            </p>
+            <p class="quote">「我们终于把客人请到了自己家里。」——俱乐部主席致辞</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 队长 ============ -->
+  <section class="section section--captain" id="captain">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">OUR CAPTAIN</p>
+        <h2>队长 · 德布劳硕</h2>
+        <p class="lead">10 号 · 中场指挥官 · 23 岁 · 绰号「手术刀」</p>
+      </header>
+
+      <div class="captain">
+        <figure class="captain__figure reveal">
+          <img src="assets/img/captain.svg" alt="队长德布劳硕的10号球衣原创插画" />
+          <figcaption>原创插画 · 德布劳硕 10 号战袍</figcaption>
+        </figure>
+
+        <div class="captain__body">
+          <div class="captain__intro reveal">
+            <p class="lead">
+              他出生在一个下雨的凌晨，家离海只有 400 米。六岁那年，他用一块破塑胶球在渔港的水泥地上
+              踢到了路灯熄灭；二十三岁这年，他戴着袖标，站在四万人的球场中央。
+            </p>
+            <p>
+              他不追求进球。他追求的是那句「他早就看见了我」——
+              球还没离开他的脚，前锋已经开始跑了。这就是德布劳硕的足球。
+            </p>
+          </div>
+
+          <ul class="data-grid reveal">
+            <li><b>268</b><span>一线队出场</span></li>
+            <li><b>96</b><span>进球</span></li>
+            <li><b>214</b><span>助攻</span></li>
+            <li><b>4.3</b><span>场均关键传球</span></li>
+            <li><b>19</b><span>任意球直接破门</span></li>
+            <li><b>11</b><span>冠军奖杯</span></li>
+          </ul>
+
+          <blockquote class="big-quote reveal">
+            「我不追求进球，我追求那句——<br />『他早就看见了我』。」
+            <cite>德布劳硕</cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- 生平时间线 -->
+      <h3 class="subhead reveal">越传奇越好：一个人的二十三年</h3>
+      <ol class="life">
+        <li class="reveal">
+          <span class="life__year">6岁</span>
+          <div class="life__text">
+            <h4>渔港的水泥地上</h4>
+            <p>用粉笔画球门线，用塑料袋当球。他给自己定的规矩是：只能一脚出球，因为多带一步就会踩到别人的脚。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">9岁</span>
+          <div class="life__text">
+            <h4>赤脚的比赛</h4>
+            <p>一场少年杯，他的球鞋破了底，索性光脚踢完全场，还送出 4 次助攻。场边一位老师傅记住了一个细节：他每传完球，从不回头看。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">12岁</span>
+          <div class="life__text">
+            <h4>三次拒绝，一个号码</h4>
+            <p>三家青训营的评语几乎一样：「技术好，太瘦，扛不住。」他的父亲在他床头贴了一张纸，上面写着：那你就传得再快一点。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">14岁</span>
+          <div class="life__text">
+            <h4>47号营的第 30 个名额</h4>
+            <p>CG 青训营当年最后一个补录名额。试训那天他迟到 9 分钟——因为在海边帮一个老人推抛锚的三轮车。教练说：「迟到要罚，但把名额给你，我不后悔。」他拿到号码 47。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">16岁</span>
+          <div class="life__text">
+            <h4>暴雨里的 30 米吊射</h4>
+            <p>青训决赛，第 88 分钟替补登场，第 90 分钟从中场左侧吊射空门绝杀。那年夏天他直接跳过 U19，进入一线队。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">17岁</span>
+          <div class="life__text">
+            <h4>首秀，第一脚触球就是助攻</h4>
+            <p>职业生涯第一次触球，一记 40 米贴地直塞。那脚球被球迷称为「第一次看见未来」。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">18岁</span>
+          <div class="life__text">
+            <h4>受伤的第 341 天</h4>
+            <p>十字韧带断裂，赛季报销。康复期他每天在康复室多待 40 分钟，只练一件事：闭眼传球。复出第一场，两记助攻。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">19岁</span>
+          <div class="life__text">
+            <h4>队史最年轻的队长</h4>
+            <p>老队长退役，把袖标交给他。交接时只说了一句：「记住，袖标不是给你的，是给场边那些孩子的。」</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">20岁</span>
+          <div class="life__text">
+            <h4>伊蒂哈德之夜</h4>
+            <p>0:3 落后，他 2 助攻 1 球，其中包括补时第 4 分钟的脚后跟绝杀。赛后他把比赛用球送给了看台上一位穿 47 号球衣的小孩。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">21岁</span>
+          <div class="life__text">
+            <h4>整个赛季，只有一次回头看</h4>
+            <p>创造联赛单赛季 38 次助攻纪录。有媒体统计：他一整季在场上回头的次数，只有一次——为了确认那位受伤倒地的对手没事。</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="life__year">22岁</span>
+          <div class="life__text">
+            <h4>把奖杯带给老码头</h4>
+            <p>捧起「环太平洋冠军杯」的第二天，他一个人把奖杯拎回老码头，给当年一起踢球的朋友们轮了一遍。他说：「这杯子有十二个人的指纹。」</p>
+          </div>
+        </li>
+        <li class="reveal life--now">
+          <span class="life__year">23岁</span>
+          <div class="life__text">
+            <h4>现在：队史助攻王，袖标还在手上</h4>
+            <p>本赛季他还差 6 次助攻，就能成为俱乐部历史上第一个完成「200 次助攻 + 200 次抢断」的中场。
+              更衣室里贴着他的那句话：「下一脚球，才是最重要的那一脚。」</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="signature-moves reveal">
+        <h3 class="subhead">他的三个招牌动作</h3>
+        <div class="moves">
+          <article>
+            <span>01</span>
+            <h4>外脚背「开刃」直塞</h4>
+            <p>用右脚外脚背把球贴地削出弧线，绕过最后一名后卫，落在门将与中卫之间。球速不快，但落点从不撒谎。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h4>停球即转身</h4>
+            <p>接球前先看一眼身后，触球那一下就把身体转到面向球门。所以他总比对手快半秒。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h4>「最后一脚的假动作」</h4>
+            <p>蓄力射门的姿势，最后 0.2 秒改成横传。全队的进球有一半来自这个假动作。</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 巨星图鉴 ============ -->
+  <section class="section section--dark" id="stars">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">WORLD STARS</p>
+        <h2>巨星图鉴：我们在球场上遇见过的人</h2>
+        <p class="lead">
+          他们是对手，也是我们墙上那些故事的作者。每一张卡片，都写着一段我们与他们的交汇。
+        </p>
+        <p class="fiction-note">
+          <span>图片说明</span> 站内球员海报均为本站原创风格插画，不是真实球员照片，也不代表任何球员或俱乐部的官方立场；
+          如需使用真实照片，请自行取得肖像与版权授权后替换 <code>assets/img/stars/</code> 下的同名文件。
+        </p>
+      </header>
+
+      <div class="filters" id="starFilters" role="tablist" aria-label="按位置筛选">
+        <button class="chip is-active" data-filter="all" role="tab">全部</button>
+        <button class="chip" data-filter="前锋" role="tab">前锋</button>
+        <button class="chip" data-filter="中场" role="tab">中场</button>
+        <button class="chip" data-filter="我们的人" role="tab">我们的人</button>
+      </div>
+
+      <div class="star-grid" id="starGrid">
+        <!-- 由 JavaScript 生成 -->
+        <noscript><p>这里是「巨星图鉴」区域，需要开启浏览器的 JavaScript 才能显示球员卡片。</p></noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 荣誉室 ============ -->
+  <section class="section" id="honours">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">TROPHY ROOM</p>
+        <h2>荣誉室</h2>
+        <p class="lead">柜子不大，但每一格里都有一段很吵的回忆。</p>
+      </header>
+
+      <div class="trophies">
+        <article class="trophy reveal">
+          <div class="trophy__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><path d="M20 8h24v6h8v6c0 8-6 14-13 15a12 12 0 0 1-7 6v7h9v8H23v-8h9v-7a12 12 0 0 1-7-6C18 34 12 28 12 20v-6h8z" fill="currentColor"/></svg>
+          </div>
+          <h3>环太平洋冠军杯</h3>
+          <p>2022 · 2024 · 2025</p>
+        </article>
+        <article class="trophy reveal">
+          <div class="trophy__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><path d="M32 4l7 14 15 2-11 11 3 15-14-7-14 7 3-15L10 20l15-2z" fill="currentColor"/></svg>
+          </div>
+          <h3>长风市城市联赛</h3>
+          <p>2019 · 2021 · 2023 · 2025</p>
+        </article>
+        <article class="trophy reveal">
+          <div class="trophy__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="currentColor" stroke-width="6"/><circle cx="32" cy="32" r="6" fill="currentColor"/></svg>
+          </div>
+          <h3>青年冠军赛</h3>
+          <p>2018 · 2020 · 2023</p>
+        </article>
+        <article class="trophy reveal">
+          <div class="trophy__icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><path d="M14 10h36l-4 30a14 14 0 0 1-28 0z" fill="currentColor"/><rect x="26" y="46" width="12" height="10" rx="2" fill="currentColor"/></svg>
+          </div>
+          <h3>社区贡献奖</h3>
+          <p>2020 · 2022 · 2024 · 2025</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 加入我们 ============ -->
+  <section class="section section--join" id="join">
+    <div class="wrap grid-2">
+      <div class="reveal">
+        <p class="eyebrow">JOIN US</p>
+        <h2>来试训吧，我们只看两件事</h2>
+        <p class="lead">你传球的时候会不会抬头，还有——你丢了球以后会不会往回跑。</p>
+        <ul class="checklist">
+          <li>U9–U17 各组别常年开放试训，青训营学费全免</li>
+          <li>每年暑假「老码头杯」，面向全城所有孩子，不需要报名费</li>
+          <li>不会踢球也可以来：我们还需要鼓手、摄影师、旗手和记录员</li>
+        </ul>
+        <div class="contact-card">
+          <h3>联系方式</h3>
+          <p><b>试训咨询</b>：trial@cgfc.example</p>
+          <p><b>球迷会员</b>：member@cgfc.example</p>
+          <p><b>训练基地</b>：长风市老码头足球公园 3 号场</p>
+        </div>
+      </div>
+
+      <form class="join-form reveal" id="joinForm" novalidate>
+        <h3>试训报名表</h3>
+        <label>姓名<input type="text" name="name" placeholder="你的名字" required /></label>
+        <div class="form-row">
+          <label>年龄<input type="number" name="age" min="6" max="60" placeholder="如 12" required /></label>
+          <label>位置
+            <select name="position">
+              <option>前锋</option><option>中场</option><option>后卫</option><option>门将</option><option>还不确定</option>
+            </select>
+          </label>
+        </div>
+        <label>联系方式<input type="text" name="contact" placeholder="手机号 / 邮箱" required /></label>
+        <label>一句话介绍自己<textarea name="note" rows="3" placeholder="比如：我最擅长一件事——把球传给跑得更快的人。"></textarea></label>
+        <button class="btn btn--primary" type="submit">提交报名</button>
+        <p class="form-tip" id="formTip" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <img src="assets/img/logo.svg" alt="CG足球俱乐部队徽" class="footer__crest" />
+      <p class="footer__name">CG足球俱乐部 · CG Football Club</p>
+      <p class="footer__motto">Come Together, Go Further.</p>
+    </div>
+    <div>
+      <h4>快速导航</h4>
+      <a href="#about">俱乐部简介</a>
+      <a href="#legends">传奇战史</a>
+      <a href="#captain">队长德布劳硕</a>
+      <a href="#stars">巨星图鉴</a>
+      <a href="#honours">荣誉室</a>
+    </div>
+    <div>
+      <h4>友情提示</h4>
+      <p class="footer__note">
+        本站为球迷自建的展示网站，非俱乐部官方发布渠道。站内「传奇战史」「队长德布劳硕」等章节含原创虚构情节，
+        所有球员海报为原创风格插画。涉及真实球队、球员的名称仅作致敬式引用，本站与相关方无任何关联。
+      </p>
+      <p class="footer__copy">© <span id="year">2026</span> CG足球俱乐部（球迷自建站）· 内容可自由修改</p>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="回到顶部">↑</button>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

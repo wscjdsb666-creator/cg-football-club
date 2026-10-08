@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-labelledby="capTitle capDesc">
+  <title id="capTitle">队长德布劳硕 · 10号战袍</title>
+  <desc id="capDesc">原创风格插画：绿金配色的 10 号球衣、队长袖标与王冠之星，底部写着德布劳硕。</desc>
+  <defs>
+    <linearGradient id="capBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d4534"/>
+      <stop offset=".5" stop-color="#072018"/>
+      <stop offset="1" stop-color="#03100c"/>
+    </linearGradient>
+    <radialGradient id="capLight" cx="50%" cy="24%" r="60%">
+      <stop offset="0" stop-color="#8fe6bd" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#8fe6bd" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="capGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbeeb4"/>
+      <stop offset=".34" stop-color="#e7c968"/>
+      <stop offset=".66" stop-color="#c2952c"/>
+      <stop offset="1" stop-color="#f7e3a0"/>
+    </linearGradient>
+    <linearGradient id="capKit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16785a"/>
+      <stop offset=".55" stop-color="#0b3d2e"/>
+      <stop offset="1" stop-color="#061c15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="640" height="800" fill="url(#capBg)"/>
+  <rect width="640" height="800" fill="url(#capLight)"/>
+  <g fill="none" stroke="#e3c261" stroke-opacity=".14">
+    <circle cx="320" cy="250" r="168" stroke-width="1.5"/>
+    <circle cx="320" cy="250" r="212" stroke-width="1"/>
+    <path d="M20 800a300 300 0 0 1 600 0" stroke-width="1.5"/>
+    <path d="M90 800a230 230 0 0 1 460 0" stroke-width="1"/>
+  </g>
+  <text x="320" y="700" text-anchor="middle" font-family="Arial Black, Impact, sans-serif"
+        font-size="360" font-weight="900" fill="#e3c261" opacity=".07">10</text>
+
+  <!-- 王冠三星 -->
+  <g fill="url(#capGold)">
+    <path d="M0 -22 6.5 -6.8 22 -6.8 9.7 2.6 14.4 17.8 0 8.4-14.4 17.8-9.7 2.6-22-6.8-6.5-6.8Z" transform="translate(232 122) scale(.78)"/>
+    <path d="M0 -22 6.5 -6.8 22 -6.8 9.7 2.6 14.4 17.8 0 8.4-14.4 17.8-9.7 2.6-22-6.8-6.5-6.8Z" transform="translate(320 100) scale(1)"/>
+    <path d="M0 -22 6.5 -6.8 22 -6.8 9.7 2.6 14.4 17.8 0 8.4-14.4 17.8-9.7 2.6-22-6.8-6.5-6.8Z" transform="translate(408 122) scale(.78)"/>
+  </g>
+
+  <!-- 头部 -->
+  <circle cx="320" cy="224" r="64" fill="#0a271f"/>
+  <path d="M320 160a64 64 0 0 0-62 51c14-20 34-30 62-30s48 10 62 30a64 64 0 0 0-62-51z" fill="url(#capGold)" opacity=".35"/>
+  <path d="M260 216c12-30 34-46 60-46s48 16 60 46" fill="none" stroke="url(#capGold)"
+        stroke-width="4.5" stroke-linecap="round" stroke-opacity=".85"/>
+  <path d="M272 186c14-16 30-24 48-24s34 8 48 24" fill="none" stroke="url(#capGold)"
+        stroke-width="3.5" stroke-linecap="round" stroke-opacity=".7"/>
+  <rect x="296" y="282" width="48" height="42" rx="14" fill="#08211a"/>
+
+  <!-- 球衣 -->
+  <path d="M320 318c60 0 100 18 128 38l100 54-36 102-50-24v202c-62 26-222 26-284 0V488l-50 24-36-102 100-54c28-20 68-38 128-38Z"
+        fill="url(#capKit)" stroke="url(#capGold)" stroke-width="3" stroke-opacity=".7" stroke-linejoin="round"/>
+
+  <!-- 衣领 -->
+  <path d="M272 330 320 380 368 330" fill="none" stroke="url(#capGold)"
+        stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 号码 -->
+  <text x="320" y="600" text-anchor="middle" font-family="Arial Black, Impact, sans-serif"
+        font-size="196" font-weight="900" fill="url(#capGold)">10</text>
+
+  <!-- 队长袖标 -->
+  <g transform="rotate(-16 140 502)">
+    <rect x="110" y="484" width="60" height="34" rx="9" fill="url(#capGold)"/>
+    <text x="140" y="510" text-anchor="middle" font-family="Arial Black, Impact, sans-serif"
+          font-size="22" font-weight="900" fill="#0a2e22">C</text>
+  </g>
+
+  <!-- 底部信息 -->
+  <path d="M96 716h448" stroke="url(#capGold)" stroke-width="2" stroke-opacity=".6"/>
+  <text x="320" y="766" text-anchor="middle" font-family="PingFang SC, Microsoft YaHei, sans-serif"
+        font-size="42" font-weight="800" letter-spacing="10" fill="#f8e6a0">德布劳硕</text>
+  <text x="320" y="792" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
+        font-size="14" letter-spacing="4" fill="#e3c261" fill-opacity=".85">CAPTAIN · 10 · CG FOOTBALL CLUB</text>
+</svg>
