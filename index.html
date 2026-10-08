@@ -333,7 +333,7 @@
 
           <ul class="data-grid reveal">
             <li><b>96</b><span>出场次数</span></li>
-            <li><b>78</b><span>进球</span></li>
+            <li><b>91</b><span>年度进球</span></li>
             <li><b>121</b><span>助攻</span></li>
             <li><b>4.6</b><span>场均关键传球</span></li>
             <li><b>9</b><span>任意球直接破门</span></li>
@@ -416,7 +416,7 @@
           <span class="life__year">23岁</span>
           <div class="life__text">
             <h4>现在：第 100 场，还是队长</h4>
-            <p>本赛季他 24 场 19 球 31 助攻，拿下队内最佳射手与助攻王双料。
+            <p>年度 91 球、31 次助攻，拿下队内最佳射手。
               更衣室里贴着他的那句话：「下一脚球，才是最重要的那一脚。」</p>
           </div>
         </li>
@@ -528,50 +528,31 @@
         </article>
       </div>
 
+      <!-- 年度大奖 · 3D 奖杯 -->
+      <header class="section-head section-head--sub reveal">
+        <p class="eyebrow">BIG AWARDS 2025</p>
+        <h2>年度大奖 · 会转的奖杯</h2>
+        <p class="lead">
+          四个大奖杯，四个人。鼠标停在奖杯上，它会转得更快一点。
+        </p>
+      </header>
+
+      <div class="big-awards" id="bigAwards">
+        <!-- 由 JavaScript 生成 3D 奖杯 -->
+      </div>
+
       <!-- 年度奖项 -->
       <header class="section-head section-head--sub reveal">
         <p class="eyebrow">AWARDS 2025</p>
-        <h2>队内年度奖项</h2>
-        <p class="lead">奖杯是给球队的，这些奖是给某个人的——包括那个谁都不想拿的。</p>
+        <h2>队内年度奖项 · 一人一个</h2>
+        <p class="lead">
+          奖杯是给球队的，这些奖是给每个人的：<b data-award-count>48</b> 个队员，<b data-award-count>48</b> 个奖，
+          包括那个谁都不太想拿的。
+        </p>
       </header>
 
-      <div class="awards">
-        <article class="award award--gold reveal">
-          <span class="award__icon">🥇</span>
-          <h3>最佳射手</h3>
-          <p class="award__name">王指导（德布劳硕）· 17 号</p>
-          <p class="award__desc">2025 赛季 24 场 19 球，另加 31 次助攻。队长把这奖项让了三年，今年实在让不掉了。</p>
-        </article>
-        <article class="award reveal">
-          <span class="award__icon">🅰️</span>
-          <h3>助攻王</h3>
-          <p class="award__name">C罗 · 91 号</p>
-          <p class="award__desc">18 次助攻，其中 11 次来自左路传中。他说自己本来是前锋，是被队长喂成了边锋。</p>
-        </article>
-        <article class="award award--fun reveal">
-          <span class="award__icon">🥄</span>
-          <h3>大漏勺</h3>
-          <p class="award__name">迪马利亚 · 69 号 · 后卫</p>
-          <p class="award__desc">赛季漏人次数全队第一，被他盯的前锋基本都进过球；但关键解围同样排在全队第二。领奖时他说：「漏一个，我下一场追回来两个。」</p>
-        </article>
-        <article class="award reveal">
-          <span class="award__icon">🏃</span>
-          <h3>铁人奖</h3>
-          <p class="award__name">张浩 · 88 号</p>
-          <p class="award__desc">100 场比赛出场 96 次，出勤率全队第一。有 3 场是下了夜班直接来踢的。</p>
-        </article>
-        <article class="award reveal">
-          <span class="award__icon">🛡️</span>
-          <h3>最佳后卫</h3>
-          <p class="award__name">邵文龙 · 44 号</p>
-          <p class="award__desc">整个赛季一对一防守成功率最高。他说自己的秘诀是「不猜，就跟着跑」。</p>
-        </article>
-        <article class="award reveal">
-          <span class="award__icon">🌟</span>
-          <h3>最佳新人</h3>
-          <p class="award__name">张文浩 · 66 号</p>
-          <p class="award__desc">今年入队，第一场比赛替补登场 20 分钟就送出一次助攻，从此再没坐过替补席。</p>
-        </article>
+      <div class="awards awards--full" id="awardsGrid">
+        <!-- 由 JavaScript 依据队员名单自动生成：48 人，一人一个奖 -->
       </div>
     </div>
   </section>
