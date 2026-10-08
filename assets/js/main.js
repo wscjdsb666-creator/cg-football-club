@@ -1,8 +1,8 @@
 /* ==========================================================================
-   CG足球俱乐部 · 交互脚本
+   CG足球俱乐部（济南长清）· 交互脚本
    1) 顶部导航 / 滚动进度 / 回到顶部
-   2) 数字增长动画 + 滚动出现动画
-   3) 巨星图鉴：优先读取真实照片，读不到就用原创风格海报
+   2) 数字增长动画 + 滚动出现动画（?static=1 可关闭动画）
+   3) 阵容名单：48 名队员，支持按位置筛选与搜索
    4) 试训报名表单（前端演示，不发送数据）
    ========================================================================== */
 
@@ -12,214 +12,148 @@
   /* ---------------------------------------------------------------- 数据 */
 
   /**
-   * 巨星图鉴数据。
-   * 想要换成真实球员照片：把图片命名为 <id>.jpg 放进 assets/img/stars/ 即可，
-   * 例如 assets/img/stars/messi.jpg —— 页面会自动优先显示照片。
-   * 请注意：使用真实球员照片需要自行取得肖像权与版权授权。
+   * 阵容名单。
+   * 换成真实照片：把图片覆盖 assets/img/players/pNN.jpg 即可（编号见 assets/img/players/名单对照.md）。
    */
-  var PLAYERS = [
-    {
-      id: 'messi',
-      name: '梅西',
-      en: 'Lionel Messi',
-      pos: '前锋',
-      meta: '10号 · 阿根廷 · 左脚 · 组织型前锋',
-      desc: '他让「小个子」变成了一个褒义词。2019 年那场雨夜，他在第 71 分钟被换下，赛后他说：那是我第一次在球场上感到，传球比跑动更快。',
-      tags: ['盘带', '直塞', '任意球'],
-      poster: { num: '10', c1: '#8fd2f2', c2: '#2a6ea6', accent: '#ffffff', ink: '#0d3552', stripes: ['#ffffff', 'rgba(255,255,255,.55)'] }
-    },
-    {
-      id: 'ronaldo',
-      name: 'C罗',
-      en: 'Cristiano Ronaldo',
-      pos: '前锋',
-      meta: '7号 · 葡萄牙 · 右脚 · 禁区终结者',
-      desc: '2021 年雪战结束后，他是唯一一个在零下九度的球场里留下来加练点球的人。我们的门将说：他踢球的样子像是在跟时间吵架。',
-      tags: ['头球', '射门', '意志力'],
-      poster: { num: '7', c1: '#1b6b4c', c2: '#8c1f2b', accent: '#f6d76b', ink: '#0b2b1e' }
-    },
-    {
-      id: 'mbappe',
-      name: '姆巴佩',
-      en: 'Kylian Mbappé',
-      pos: '前锋',
-      meta: '9号 · 法国 · 右脚 · 速度型前锋',
-      desc: '2022 年巴黎那晚，我们在第 94 分钟绝杀的时候，他站在中圈笑了。据说他后来跟教练说：这支球队的传球，好像提前知道我要跑到哪里。',
-      tags: ['速度', '反击', '单刀'],
-      poster: { num: '9', c1: '#2b3f8f', c2: '#0d1b46', accent: '#f2d16b', ink: '#070f2e' }
-    },
-    {
-      id: 'haaland',
-      name: '哈兰德',
-      en: 'Erling Haaland',
-      pos: '前锋',
-      meta: '9号 · 挪威 · 左脚 · 强力中锋',
-      desc: '伊蒂哈德那场 0:3 领先之后，他还在不停要球。老队员后来回忆：他每一次冲刺都像在提醒我们——比赛还没结束，别高兴。',
-      tags: ['冲击力', '抢点', '身体'],
-      poster: { num: '9', c1: '#8fd8f0', c2: '#1c4f78', accent: '#ffffff', ink: '#0b2b45' }
-    },
-    {
-      id: 'neymar',
-      name: '内马尔',
-      en: 'Neymar Jr.',
-      pos: '前锋',
-      meta: '10号 · 巴西 · 右脚 · 技巧型边锋',
-      desc: '他是那种会把球场当成舞台的人。2023 年我们在通道里遇见他，他一边热身一边跟我们的年轻边卫说：过人可以学，想象力学不来。',
-      tags: ['花式', '突破', '创造力'],
-      poster: { num: '10', c1: '#f2d24b', c2: '#1f7a45', accent: '#ffffff', ink: '#123f22' }
-    },
-    {
-      id: 'debruyne',
-      name: '德布劳内',
-      en: 'Kevin De Bruyne',
-      pos: '中场',
-      meta: '17号 · 比利时 · 右脚 · 直塞大师',
-      desc: '我们的队长从小看他的录像长大。他说：看别人传球是在学技术，看他传球，是在学「抬头的那一秒钟想什么」。',
-      tags: ['外脚背', '传中', '视野'],
-      poster: { num: '17', c1: '#9fe0f5', c2: '#12496e', accent: '#ffffff', ink: '#0a2d45' }
-    },
-    {
-      id: 'captain10',
-      name: '德布劳硕',
-      en: 'C. G. Debruyshuo',
-      pos: '我们的人',
-      meta: '10号 · 队长 · 23岁 · 我们的「手术刀」',
-      desc: '他不是从我们的观众席走进球场的——他是从球场边的那条水泥小路走进来的。23 岁，268 场，214 次助攻，袖标还在他手上。',
-      tags: ['外脚背', '队长', '青训47号'],
-      poster: { num: '10', c1: '#0f5540', c2: '#04140f', accent: '#e3c261', ink: '#02120d', laurel: true }
-    }
+  var ROSTER = [
+    { name: '王指导', nick: '德布劳硕', no: 17, pos: '中场', cap: true, badge: '最佳射手', blurb: '队长 · 中场指挥官，队史第一球和第一次帽子戏法都是他。' },
+    { name: 'C罗', no: 91, pos: '前锋', badge: '助攻王', blurb: '左路杀伤力最大的一个，本赛季 18 次助攻。' },
+    { name: '迪马利亚', no: 69, pos: '门将', badge: '大漏勺', blurb: '丢球最多，扑救也最多。本届「大漏勺」奖得主。' },
+    { name: 'W', no: 5, pos: '后卫' },
+    { name: '张浩', no: 88, pos: '中场', badge: '铁人奖', blurb: '100 场出场 96 次，出勤率全队第一。' },
+    { name: '董坤秀', no: 23, pos: '后卫' },
+    { name: '徐中华', no: 7, pos: '前锋' },
+    { name: '邵文龙', no: 44, pos: '后卫', badge: '最佳后卫', blurb: '一对一防守成功率全队最高。' },
+    { name: 'Md', no: 11, pos: '前锋' },
+    { name: '卢仲恺', no: 33, pos: '中场' },
+    { name: '阿扎书', no: 9, pos: '前锋' },
+    { name: '张文浩', no: 66, pos: '后卫', badge: '最佳新人', blurb: '今年入队，首秀替补登场 20 分钟送出助攻。' },
+    { name: '水长东', no: 21, pos: '中场' },
+    { name: 'Z', no: 3, pos: '后卫' },
+    { name: '笑笑', no: 12, pos: '中场' },
+    { name: '猫哥', no: 55, pos: '后卫' },
+    { name: '奥特曼', no: 27, pos: '前锋' },
+    { name: '可乐撒…', no: 18, pos: '中场' },
+    { name: 'Masta…', no: 4, pos: '后卫' },
+    { name: '格里斯…', no: 30, pos: '中场' },
+    { name: 'Barcel…', no: 82, pos: '前锋' },
+    { name: 'Hope', no: 6, pos: '后卫' },
+    { name: 'messi', no: 19, pos: '中场' },
+    { name: '王策', no: 14, pos: '后卫' },
+    { name: 'Равно…', no: 99, pos: '前锋' },
+    { name: '10.', no: 10, pos: '前锋' },
+    { name: '见贤思齐', no: 8, pos: '中场' },
+    { name: '杨永恒', no: 2, pos: '后卫' },
+    { name: '石玉', no: 16, pos: '后卫' },
+    { name: '国之栋梁', no: 77, pos: '前锋' },
+    { name: 'aoc', no: 13, pos: '中场' },
+    { name: 'forest', no: 29, pos: '后卫' },
+    { name: '£', no: 71, pos: '前锋' },
+    { name: 'Ooo', no: 97, pos: '门将' },
+    { name: 'Rura', no: 20, pos: '中场' },
+    { name: 'PEDIR', no: 76, pos: '前锋' },
+    { name: '拔云云', no: 1, pos: '门将' },
+    { name: 'Lir', no: 22, pos: '后卫' },
+    { name: '扑朔迷离', no: 24, pos: '中场' },
+    { name: '可乐洒…', no: 26, pos: '前锋' },
+    { name: 'Ye', no: 15, pos: '中场' },
+    { name: '心如止水', no: 31, pos: '后卫' },
+    { name: '寒王', no: 68, pos: '中场' },
+    { name: '张惠荔', no: 92, pos: '前锋' },
+    { name: '刘子扬', no: 40, pos: '后卫' },
+    { name: '赵延', no: 46, pos: '门将' },
+    { name: '我是个…', no: 58, pos: '后卫' },
+    { name: '哲', no: 73, pos: '前锋' }
   ];
 
-  /* ------------------------------------------------- 原创风格海报（SVG） */
+  /* -------------------------------------------------------- 阵容名单渲染 */
 
-  function posterSVG(p) {
-    var o = p.poster;
-    var uid = 'pk-' + p.id;
-    var stripes = '';
-    if (o.stripes) {
-      stripes =
-        '<g opacity=".16">' +
-        '<rect x="0" y="0" width="75" height="800" fill="' + o.stripes[0] + '"/>' +
-        '<rect x="150" y="0" width="75" height="800" fill="' + o.stripes[0] + '"/>' +
-        '<rect x="300" y="0" width="75" height="800" fill="' + o.stripes[0] + '"/>' +
-        '<rect x="450" y="0" width="75" height="800" fill="' + o.stripes[0] + '"/>' +
-        '<rect x="600" y="0" width="75" height="800" fill="' + o.stripes[0] + '"/>' +
-        '</g>';
-    }
-    var laurel = o.laurel
-      ? '<path d="M300 176c-46 0-84 24-84 24s38 10 84 10 84-10 84-10-38-24-84-24z" fill="' + o.accent + '" opacity=".85"/>'
-      : '';
+  var grid = document.getElementById('squadGrid');
+  var emptyTip = document.getElementById('squadEmpty');
 
-    return '' +
-      '<svg viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="' + p.name + ' 原创风格海报">' +
-        '<defs>' +
-          '<linearGradient id="bg-' + uid + '" x1="0" y1="0" x2="1" y2="1">' +
-            '<stop offset="0" stop-color="' + o.c1 + '"/>' +
-            '<stop offset="1" stop-color="' + o.c2 + '"/>' +
-          '</linearGradient>' +
-          '<radialGradient id="gl-' + uid + '" cx="50%" cy="26%" r="62%">' +
-            '<stop offset="0" stop-color="' + o.accent + '" stop-opacity=".5"/>' +
-            '<stop offset="1" stop-color="' + o.accent + '" stop-opacity="0"/>' +
-          '</radialGradient>' +
-          '<linearGradient id="js-' + uid + '" x1="0" y1="0" x2="0" y2="1">' +
-            '<stop offset="0" stop-color="#ffffff" stop-opacity=".18"/>' +
-            '<stop offset="1" stop-color="#000000" stop-opacity=".3"/>' +
-          '</linearGradient>' +
-        '</defs>' +
-
-        '<rect width="600" height="800" fill="url(#bg-' + uid + ')"/>' +
-        stripes +
-        '<rect width="600" height="800" fill="url(#gl-' + uid + ')"/>' +
-
-        /* 球场装饰线 */
-        '<g stroke="' + o.accent + '" stroke-opacity=".18" fill="none">' +
-          '<circle cx="300" cy="360" r="250" stroke-width="2"/>' +
-          '<path d="M40 800a260 260 0 0 1 520 0" stroke-width="2"/>' +
-        '</g>' +
-
-        /* 巨大号码水印 */
-        '<text x="300" y="700" text-anchor="middle" font-family="Arial Black, Impact, sans-serif"' +
-          ' font-size="400" font-weight="900" fill="' + o.accent + '" opacity=".13">' + o.num + '</text>' +
-
-        /* 头部剪影 */
-        laurel +
-        '<circle cx="300" cy="252" r="74" fill="' + o.ink + '"/>' +
-        '<path d="M226 258c0-44 33-78 74-78s74 34 74 78c0 6-2 12-4 17-6-26-34-42-70-42s-64 16-70 42c-2-5-4-11-4-17z" fill="' + o.accent + '" opacity=".55"/>' +
-        '<rect x="272" y="312" width="56" height="42" rx="14" fill="' + o.ink + '"/>' +
-
-        /* 球衣 */
-        '<path d="M182 386c34-26 74-44 118-44s84 18 118 44l84 46-44 104-42-24v170c-62 30-170 30-232 0V512l-42 24-44-104z"' +
-          ' fill="url(#js-' + uid + ')" stroke="' + o.accent + '" stroke-opacity=".55" stroke-width="3"/>' +
-        '<path d="M262 348l38 44 38-44" fill="none" stroke="' + o.accent + '" stroke-opacity=".8" stroke-width="6" stroke-linecap="round"/>' +
-        '<text x="300" y="600" text-anchor="middle" font-family="Arial Black, Impact, sans-serif"' +
-          ' font-size="180" font-weight="900" fill="' + o.accent + '">' + o.num + '</text>' +
-        '<rect x="112" y="492" width="52" height="30" rx="8" fill="' + o.accent + '" opacity=".9" transform="rotate(-18 138 507)"/>' +
-
-        /* 底部说明条 */
-        '<rect x="0" y="742" width="600" height="58" fill="#04120e" opacity=".55"/>' +
-        '<text x="300" y="778" text-anchor="middle" font-family="PingFang SC, Microsoft YaHei, sans-serif"' +
-          ' font-size="20" letter-spacing="4" fill="#f8e6a0" opacity=".92">原创风格插画 · CG FC</text>' +
-      '</svg>';
+  function photoName(i) {
+    return 'assets/img/players/p' + String(i + 1).padStart(2, '0') + '.jpg';
   }
 
-  /* -------------------------------------------------------- 巨星图鉴渲染 */
-
-  var grid = document.getElementById('starGrid');
-
-  function buildCard(p) {
+  function buildPlayer(p, i) {
     var card = document.createElement('article');
-    card.className = 'star-card';
+    card.className = 'player' + (p.badge ? ' player--star' : '') + (p.cap ? ' player--captain' : '');
     card.dataset.pos = p.pos;
+    card.dataset.search = (p.name + ' ' + p.pos + ' ' + p.no + ' ' + (p.nick || '')).toLowerCase();
 
-    var media = document.createElement('div');
-    media.className = 'star-card__media';
-    media.innerHTML = posterSVG(p);
+    var photo = document.createElement('div');
+    photo.className = 'player__photo';
+    var img = document.createElement('img');
+    img.src = photoName(i);
+    img.alt = p.name + ' 头像';
+    img.loading = 'lazy';
+    img.width = 240; img.height = 240;
+    photo.appendChild(img);
 
-    var badge = document.createElement('span');
-    badge.className = 'star-card__no';
-    badge.textContent = p.meta.split(' · ')[0] + ' · ' + p.pos;
-    media.appendChild(badge);
+    var num = document.createElement('span');
+    num.className = 'player__no';
+    num.textContent = p.no;
+    photo.appendChild(num);
 
-    /* 如果 assets/img/stars/<id>.jpg 存在，就用真实照片覆盖原创海报（角标保留） */
-    var photo = new Image();
-    photo.alt = p.name + ' 照片';
-    photo.addEventListener('load', function () {
-      var svg = media.querySelector('svg');
-      if (svg) media.removeChild(svg);
-      media.insertBefore(photo, badge);
-    });
-    photo.src = 'assets/img/stars/' + p.id + '.jpg';
+    var badge = '';
+    if (p.cap) badge = '<span class="player__badge player__badge--cap">队长</span>';
+    else if (p.badge) badge = '<span class="player__badge">' + p.badge + '</span>';
 
     var body = document.createElement('div');
-    body.className = 'star-card__body';
     body.innerHTML =
-      '<h3>' + p.name + ' <em>' + p.en + '</em></h3>' +
-      '<p class="star-card__meta">' + p.meta + '</p>' +
-      '<p>' + p.desc + '</p>' +
-      '<div class="star-card__tags">' + p.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</div>';
+      badge +
+      '<p class="player__name">' + p.name + (p.nick ? ' <small>(' + p.nick + ')</small>' : '') + '</p>' +
+      '<p class="player__pos">' + p.pos + ' · ' + p.no + ' 号</p>' +
+      (p.blurb ? '<p class="player__blurb">' + p.blurb + '</p>' : '');
 
-    card.appendChild(media);
+    card.appendChild(photo);
     card.appendChild(body);
     return card;
   }
 
+  var cards = [];
   if (grid) {
-    PLAYERS.forEach(function (p) { grid.appendChild(buildCard(p)); });
+    ROSTER.forEach(function (p, i) {
+      var c = buildPlayer(p, i);
+      cards.push(c);
+      grid.appendChild(c);
+    });
+  }
 
-    var filters = document.getElementById('starFilters');
+  /* 筛选 + 搜索 */
+  var filters = document.getElementById('squadFilters');
+  var search = document.getElementById('squadSearch');
+  var activeFilter = 'all';
+
+  function applyFilter() {
+    var q = (search && search.value || '').trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function (card) {
+      var okPos = activeFilter === 'all' || card.dataset.pos === activeFilter;
+      var okText = !q || card.dataset.search.indexOf(q) !== -1;
+      var show = okPos && okText;
+      card.style.display = show ? '' : 'none';
+      if (show) shown++;
+    });
+    if (emptyTip) emptyTip.hidden = shown !== 0;
     if (filters) {
-      filters.addEventListener('click', function (e) {
-        var btn = e.target.closest('.chip');
-        if (!btn) return;
-        [].forEach.call(filters.querySelectorAll('.chip'), function (c) { c.classList.remove('is-active'); });
-        btn.classList.add('is-active');
-        var f = btn.dataset.filter;
-        [].forEach.call(grid.children, function (card) {
-          var show = (f === 'all' || card.dataset.pos === f);
-          card.style.display = show ? '' : 'none';
-        });
-      });
+      var all = filters.querySelector('[data-filter="all"]');
+      if (all) all.textContent = shown === cards.length ? '全部 ' + cards.length : '命中 ' + shown;
     }
+  }
+
+  if (filters) {
+    filters.addEventListener('click', function (e) {
+      var btn = e.target.closest('.chip');
+      if (!btn) return;
+      [].forEach.call(filters.querySelectorAll('.chip'), function (c) { c.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      activeFilter = btn.dataset.filter;
+      applyFilter();
+    });
+  }
+  if (search) {
+    search.addEventListener('input', applyFilter);
   }
 
   /* ------------------------------------------------------ 导航 / 交互 */
@@ -261,19 +195,15 @@
 
   /* ---------------------------------------------------- 滚动出现动画 */
 
-  /* ?static=1 时立刻显示所有内容（用于截图、打印或极老的浏览器） */
   var staticMode = /[?&]static=1/.test(location.search);
-
   var reveals = document.querySelectorAll('.reveal');
+
   if (staticMode) {
     [].forEach.call(reveals, function (el) { el.classList.add('is-in'); });
   } else if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          en.target.classList.add('is-in');
-          io.unobserve(en.target);
-        }
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
     [].forEach.call(reveals, function (el) { io.observe(el); });
@@ -307,10 +237,7 @@
   } else if ('IntersectionObserver' in window && counters.length) {
     var cio = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          animateNumber(en.target);
-          cio.unobserve(en.target);
-        }
+        if (en.isIntersecting) { animateNumber(en.target); cio.unobserve(en.target); }
       });
     }, { threshold: .5 });
     [].forEach.call(counters, function (el) { cio.observe(el); });
@@ -327,12 +254,12 @@
       var name = (data.get('name') || '').toString().trim();
       var contact = (data.get('contact') || '').toString().trim();
       if (!name || !contact) {
-        tip.style.color = '#b3472f';
+        tip.style.color = '#a8101f';
         tip.textContent = '还差一点：请填上姓名和联系方式。';
         return;
       }
-      tip.style.color = '#12664b';
-      tip.textContent = '收到啦，' + name + '！这是演示表单，数据没有真的发出去——把表单接到你自己的邮箱或表格就能用。';
+      tip.style.color = '#123a7d';
+      tip.textContent = '收到啦，' + name + '！这是演示表单，信息没有真的发出去——想直接报名请发邮件到 1359893879@qq.com。';
       form.reset();
     });
   }

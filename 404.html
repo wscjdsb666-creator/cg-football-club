@@ -5,56 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>球打偏了 · 404 · CG足球俱乐部</title>
 <style>
-  :root{--gold:#e3c261;--gold-2:#f8e6a0}
   *{box-sizing:border-box}
   body{
     margin:0;min-height:100vh;display:grid;place-items:center;text-align:center;
-    padding:2rem;color:#dcece6;
+    padding:2rem;color:#dfe6f5;
     font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;
-    background:radial-gradient(110% 90% at 50% -10%,#14674c 0%,#0a2c22 45%,#04120e 100%);
+    background:radial-gradient(115% 95% at 50% -10%,#1c4a91 0%,#0d2150 45%,#050c1f 100%);
   }
-  .box{max-width:520px;display:grid;justify-items:center;gap:.6rem}
-  .crest{width:120px;filter:drop-shadow(0 14px 30px rgba(0,0,0,.55))}
+  .box{max-width:540px;display:grid;justify-items:center;gap:.6rem}
+  .crest{width:120px;filter:drop-shadow(0 14px 30px rgba(0,0,0,.6))}
   h1{font-size:clamp(2rem,7vw,3rem);margin:.6rem 0 0;color:#fff;letter-spacing:.06em}
-  p{color:#9fb8af;margin:0}
-  .big{font-size:.8rem;letter-spacing:.3em;color:var(--gold);font-weight:700}
+  p{color:#9aa8c6;margin:0}
+  .big{font-size:.8rem;letter-spacing:.3em;color:#ff8f9a;font-weight:700}
   a{
     margin-top:1.4rem;display:inline-block;padding:.8rem 1.7rem;border-radius:999px;
-    background:linear-gradient(135deg,var(--gold-2),#c2952c);color:#241c03;
-    font-weight:800;text-decoration:none;
+    background:linear-gradient(135deg,#ef3b4c,#a8101f);color:#fff;
+    font-weight:800;text-decoration:none;box-shadow:0 12px 28px rgba(215,25,45,.35);
   }
-  a:hover{filter:brightness(1.07)}
+  a:hover{filter:brightness(1.08)}
 </style>
 </head>
 <body>
   <div class="box">
     <svg class="crest" viewBox="0 0 220 264" role="img" aria-label="CG足球俱乐部队徽">
       <defs>
-        <linearGradient id="cgShield" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#12513c"/><stop offset=".55" stop-color="#0a2e22"/><stop offset="1" stop-color="#04140f"/>
+        <linearGradient id="n" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#1c4a91"/><stop offset=".55" stop-color="#102c60"/><stop offset="1" stop-color="#08183a"/>
         </linearGradient>
-        <linearGradient id="cgGold" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#fbeeb4"/><stop offset=".3" stop-color="#e7c968"/>
-          <stop offset=".62" stop-color="#c2952c"/><stop offset="1" stop-color="#f7e3a0"/>
+        <linearGradient id="r" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#a8101f"/><stop offset=".5" stop-color="#d7192d"/><stop offset="1" stop-color="#ff4d5e"/>
         </linearGradient>
+        <clipPath id="c"><path d="M110 12 204 44v82c0 66-40 108-94 126C56 234 16 192 16 126V44Z"/></clipPath>
       </defs>
-      <path d="M110 12 204 44v82c0 66-40 108-94 126C56 234 16 192 16 126V44Z"
-            fill="url(#cgShield)" stroke="url(#cgGold)" stroke-width="7" stroke-linejoin="round"/>
-      <path d="M110 30 188 56v70c0 56-34 92-78 108C66 218 32 182 32 126V56Z"
-            fill="none" stroke="url(#cgGold)" stroke-width="2" stroke-opacity=".55"/>
-      <g fill="url(#cgGold)">
+      <g clip-path="url(#c)">
+        <rect width="220" height="264" fill="url(#n)"/>
+        <path d="M-10 264 210 74 220 96 220 264Z" fill="url(#r)"/>
+        <path d="M-10 264 210 74" stroke="#fff" stroke-width="4" stroke-opacity=".85" fill="none"/>
+      </g>
+      <path d="M110 12 204 44v82c0 66-40 108-94 126C56 234 16 192 16 126V44Z" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+      <g fill="#fff">
         <rect x="75" y="80" width="70" height="13" rx="4"/>
         <path d="M77 80 86 60l10 20Z"/><path d="M100 80 110 54l10 26Z"/><path d="M124 80 133 60l10 20Z"/>
         <circle cx="86" cy="57" r="4"/><circle cx="110" cy="51" r="4.6"/><circle cx="134" cy="57" r="4"/>
       </g>
-      <rect x="30" y="100" width="160" height="21" rx="6" fill="url(#cgGold)"/>
-      <text x="110" y="115.5" text-anchor="middle" font-family="Arial Black, Impact, sans-serif"
-            font-size="12.5" letter-spacing="2.2" fill="#0a2e22">EST. 2016</text>
-      <text x="110" y="196" text-anchor="middle" font-family="Arial Black, Impact, sans-serif"
-            font-size="88" font-weight="900" letter-spacing="1" fill="url(#cgGold)"
-            stroke="#6b4d10" stroke-width="1.1" paint-order="stroke">CG</text>
-      <circle cx="110" cy="222" r="16" fill="#04140f" stroke="url(#cgGold)" stroke-width="3"/>
-      <path d="M110 214.5 117 219.4 114.3 227.6 105.7 227.6 103 219.4Z" fill="url(#cgGold)"/>
+      <rect x="30" y="100" width="160" height="21" rx="6" fill="#fff"/>
+      <text x="110" y="115.5" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="12.5" letter-spacing="2.2" fill="#0c1f47">EST. 2018</text>
+      <text x="110" y="196" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="88" font-weight="900" letter-spacing="1" fill="#fff" stroke="#0a1a3d" stroke-width="4" paint-order="stroke">CG</text>
+      <text x="110" y="196" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="88" font-weight="900" letter-spacing="1" fill="#fff">CG</text>
+      <circle cx="110" cy="222" r="16" fill="#0a1a3d" stroke="#fff" stroke-width="3"/>
+      <path d="M110 214.5 117 219.4 114.3 227.6 105.7 227.6 103 219.4Z" fill="#fff"/>
     </svg>
     <div class="big">404 · 球打偏了</div>
     <h1>这一脚出界了</h1>
@@ -65,8 +64,8 @@
     /* 自动适配置顶域名或项目子路径（GitHub Pages 项目站点形如 /仓库名/） */
     (function () {
       var parts = location.pathname.split('/').filter(Boolean);
-      var isUserSite = parts.length === 0 || /\.html?$/i.test(parts[0]);
-      var base = isUserSite ? '/' : '/' + parts[0] + '/';
+      var isFile = /\.html?$/i.test(parts[parts.length - 1] || '');
+      var base = parts.length === 0 ? '/' : (isFile ? '/' + (parts.length > 1 ? parts[0] + '/' : '') : '/' + parts[0] + '/');
       document.getElementById('homeLink').setAttribute('href', base);
     })();
   </script>
