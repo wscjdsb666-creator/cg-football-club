@@ -398,6 +398,15 @@ p{margin:0 0 1em}
 }
 .trophy3d .svg-layer-wrap{position:absolute;inset:0;transform-style:preserve-3d}
 .trophy3d .svg-layer{width:100%;height:auto;display:block}
+
+/* WebGL 真实 3D 画布：加载成功后隐藏上面的 CSS 版奖杯与假底座 */
+.t3d-canvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;cursor:grab;touch-action:none;
+}
+.big-award__stage.is-drag .t3d-canvas{cursor:grabbing}
+.big-award__stage.is-webgl .trophy3d-wrap,
+.big-award__stage.is-webgl::after{display:none}
 .t3d-flare{
   position:absolute;top:0;bottom:0;left:0;width:55%;pointer-events:none;
   background:linear-gradient(105deg,transparent,rgba(255,255,255,.6),transparent);
